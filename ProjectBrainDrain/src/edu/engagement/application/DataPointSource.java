@@ -20,11 +20,11 @@ public class DataPointSource
 	// Database fields
 	private SQLiteDatabase database;
 	private DatabaseHelper dbHelper;
-	private String[] allColumns =
+	/*private String[] allColumns =
 	{ DatabaseHelper.COLUMN_TIMESTAMP, DatabaseHelper.COLUMN_HEARTRATE, DatabaseHelper.COLUMN_ALPHA,
 			DatabaseHelper.COLUMN_BETA, DatabaseHelper.COLUMN_THETA, DatabaseHelper.COLUMN_ATTENTION,
 			DatabaseHelper.COLUMN_CH1, DatabaseHelper.COLUMN_CH2, DatabaseHelper.COLUMN_CH3, DatabaseHelper.COLUMN_CH4,
-			DatabaseHelper.COLUMN_CH5, DatabaseHelper.COLUMN_CH6, DatabaseHelper.COLUMN_CH7, DatabaseHelper.COLUMN_CH8 };
+			DatabaseHelper.COLUMN_CH5, DatabaseHelper.COLUMN_CH6, DatabaseHelper.COLUMN_CH7, DatabaseHelper.COLUMN_CH8 };*/
 
 	public DataPointSource(Context context)
 	{
@@ -122,7 +122,7 @@ public class DataPointSource
 	{
 		List<EegPower> points = new ArrayList<EegPower>();
 
-		Cursor cursor = database.query(DatabaseHelper.TABLE_EEG, allColumns, null, null, null, null, null);
+		Cursor cursor = database.query(DatabaseHelper.TABLE_EEG, null, null, null, null, null, null);
 
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast())
@@ -144,7 +144,7 @@ public class DataPointSource
 	{
 		List<HeartRate> points = new ArrayList<HeartRate>();
 
-		Cursor cursor = database.query(DatabaseHelper.TABLE_HR, allColumns, null, null, null, null, null);
+		Cursor cursor = database.query(DatabaseHelper.TABLE_HR, null, null, null, null, null, null);
 
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast())
@@ -164,7 +164,7 @@ public class DataPointSource
 	{
 		List<EegAttention> points = new ArrayList<EegAttention>();
 
-		Cursor cursor = database.query(DatabaseHelper.TABLE_ATTENTION, allColumns, null, null, null, null, null);
+		Cursor cursor = database.query(DatabaseHelper.TABLE_ATTENTION, null, null, null, null, null, null);
 
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast())
@@ -184,7 +184,7 @@ public class DataPointSource
 	{
 		List<EegRaw> points = new ArrayList<EegRaw>();
 
-		Cursor cursor = database.query(DatabaseHelper.TABLE_RAW, allColumns, null, null, null, null, null);
+		Cursor cursor = database.query(DatabaseHelper.TABLE_RAW, null, null, null, null, null, null);
 
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast())

@@ -2,10 +2,13 @@ package edu.engagement.application;
 
 import java.text.DecimalFormat;
 import java.util.Locale;
+
 import android.os.Bundle;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Set;
+
 import edu.engagement.application.DataPointSource;
 import edu.engagement.application.NewConnectedListener;
 
@@ -153,6 +156,16 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 		// Creates a contextual action bar that allows the user to connect
 		mActionMode = startActionMode(mActionModeCallback);
+		
+		// Sync data
+		//dataSource.createDataPointAttention(System.currentTimeMillis(), 10);
+		//dataSource.createDataPointAttention(System.currentTimeMillis(), 20);
+		dataSource.createDataPointAttention(System.currentTimeMillis(), 30);
+		
+		new UploadDataTask().execute(dataSource);
+		
+		dataSource.clearDatabse();
+		
 	}
 
 	private ActionMode.Callback mActionModeCallback = new ActionMode.Callback()
@@ -265,7 +278,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		// Sync data
 		try
 		{
-			TTransport transport = new TSocket("localhost", PORT);
+			TTransport transport = new TSocket("128.173.237.162", 8080);
 			TBinaryProtocol protocol = new TBinaryProtocol(transport);
 			EngagementService.Client client = new EngagementService.Client(protocol);
 			transport.open();
